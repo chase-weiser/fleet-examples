@@ -1,14 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: scale
 spec:
-   replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: fleet
+      tier: demo
+  replicas: 3
   template:
+    metadata:
+      labels:
+        app: fleet
+        tier: demo
     spec:
       containers:
-      - name: scale-demo
-        image: monachus/rancher-demo
+      - name: scale
+        image: 	monachus/rancher-demo
         resources:
           requests:
             cpu: 100m
