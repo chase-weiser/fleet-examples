@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: scale
+  labels:
+    demo: nv
 spec:
   selector:
     matchLabels:
