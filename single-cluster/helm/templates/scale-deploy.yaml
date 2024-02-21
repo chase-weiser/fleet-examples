@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: scale-nodeport-service
+  name: scale-loadbalancer-service
 spec:
   type: LoadBalancer
   selector:
