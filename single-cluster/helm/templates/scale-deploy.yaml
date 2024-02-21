@@ -31,7 +31,7 @@ kind: Service
 metadata:
   name: scale-nodeport-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: fleet
     tier: demo
