@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scale
+  labels:
+    demo: nv
+spec:
+  selector:
+    matchLabels:
+      app: fleet
+      tier: demo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: fleet
+        tier: demo
+    spec:
+      containers:
+      - name: scale
+        image: 	monachus/rancher-demo
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: scale-loadbalancer-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: fleet
+    tier: demo
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30050       
